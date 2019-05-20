@@ -98,3 +98,4 @@ CREATE TABLE `producttype` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ----
 测试git是否成功
+https://baijiahao.baidu.com/s?id=1619544681032320225&wfr=spider&for=pc
