@@ -99,3 +99,4 @@ CREATE TABLE `producttype` (
 ----
 测试git是否成功
 https://baijiahao.baidu.com/s?id=1619544681032320225&wfr=spider&for=pc
+git push -u origin master
