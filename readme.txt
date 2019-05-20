@@ -96,3 +96,5 @@ CREATE TABLE `producttype` (
   `parentid` int(11) DEFAULT NULL COMMENT '父等级id 第一等级的话 父等级为空',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+----
+测试git是否成功
