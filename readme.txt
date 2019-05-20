@@ -11,7 +11,7 @@ CREATE TABLE `user` (
   `qq` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `weixin` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `sex` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '1´ú±íÄĞ  2´ú±íÅ®',
+  `sex` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '1ä»£è¡¨ç”·  2ä»£è¡¨å¥³',
   `birthday` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `account` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -27,64 +27,64 @@ CREATE TABLE `mechant` (
   `merchantaccount` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `mechantpassword` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `mechantscope` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
-  `auditstatus` int(2) DEFAULT NULL COMMENT '1. Ìá½»³É¹¦ 2. ÉóºËÍ¨¹ı 3£¬ÉóºË²»Í¨¹ı',
-	`soldout` int(2) DEFAULT NULL COMMENT '1. Õı³£ 2. ÏÂ¼Ü',
+  `auditstatus` int(2) DEFAULT NULL COMMENT '1. æäº¤æˆåŠŸ 2. å®¡æ ¸é€šè¿‡ 3ï¼Œå®¡æ ¸ä¸é€šè¿‡',
+	`soldout` int(2) DEFAULT NULL COMMENT '1. æ­£å¸¸ 2. ä¸‹æ¶',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
 CREATE TABLE `ordermain` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
-  `payamount` int(20) DEFAULT NULL COMMENT 'Ö§¸¶½ğÈÚ',
-  `userid` int(20) DEFAULT NULL COMMENT 'ÓÃ»§id',
-  `createtime` datetime DEFAULT NULL COMMENT '´´½¨Ê±¼ä',
-  `paytime` datetime DEFAULT NULL COMMENT 'Ö§¸¶Ê±¼ä',
-  `paystatus` int(2) DEFAULT NULL COMMENT 'Ö§¸¶×´Ì¬ 1 Î´Ö§¸¶ 2 ÒÑÖ§¸¶ 3 ÍË¿î',
-  `consigneeadress` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÊÕ»õÈËµØÖ·',
-  `consigneephone` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÊÕ»õÈËµç»°',
-  `consigneename` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÊÕ»õÈËĞÕÃû',
-  `tradenumber` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '½»Ò×Á÷Ë®ºÅ',
-  `paytype` int(2) DEFAULT NULL COMMENT 'Ö§¸¶ÀàĞÍ',
-  `orderstatus` int(2) DEFAULT NULL COMMENT '¶©µ¥×´Ì¬ 0 Õı³£ 1 ÊÇÈ¡Ïû',
+  `payamount` int(20) DEFAULT NULL COMMENT 'æ”¯ä»˜é‡‘è',
+  `userid` int(20) DEFAULT NULL COMMENT 'ç”¨æˆ·id',
+  `createtime` datetime DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `paytime` datetime DEFAULT NULL COMMENT 'æ”¯ä»˜æ—¶é—´',
+  `paystatus` int(2) DEFAULT NULL COMMENT 'æ”¯ä»˜çŠ¶æ€ 1 æœªæ”¯ä»˜ 2 å·²æ”¯ä»˜ 3 é€€æ¬¾',
+  `consigneeadress` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'æ”¶è´§äººåœ°å€',
+  `consigneephone` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'æ”¶è´§äººç”µè¯',
+  `consigneename` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'æ”¶è´§äººå§“å',
+  `tradenumber` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'äº¤æ˜“æµæ°´å·',
+  `paytype` int(2) DEFAULT NULL COMMENT 'æ”¯ä»˜ç±»å‹',
+  `orderstatus` int(2) DEFAULT NULL COMMENT 'è®¢å•çŠ¶æ€ 0 æ­£å¸¸ 1 æ˜¯å–æ¶ˆ',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `orderdetail` (
-  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '¶©µ¥id',
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'è®¢å•id',
   `orderid` int(20) DEFAULT NULL,
-  `productid` int(20) DEFAULT NULL COMMENT 'ÉÌÆ·id',
-  `mechartid` int(20) DEFAULT NULL COMMENT 'ÉÌ¼Òid',
-  `createtime` datetime DEFAULT NULL COMMENT '´´½¨Ê±¼ä',
-  `tradenum` int(20) DEFAULT NULL COMMENT '½»Ò×Ê±¼ä',
+  `productid` int(20) DEFAULT NULL COMMENT 'å•†å“id',
+  `mechartid` int(20) DEFAULT NULL COMMENT 'å•†å®¶id',
+  `createtime` datetime DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `tradenum` int(20) DEFAULT NULL COMMENT 'äº¤æ˜“æ—¶é—´',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `product` (
-  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'Ö÷¼ü',
-  `producttypeid` int(20) DEFAULT NULL COMMENT 'ÉÌÆ·Àà±ğid',
-  `producttitle` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·±êÌâ',
-  `productprice` int(20) DEFAULT NULL COMMENT 'ÉÌÆ·¼Û¸ñ',
-  `mechartid` int(20) DEFAULT NULL COMMENT 'ÉÌ¼Òid',
-  `createtime` datetime DEFAULT NULL COMMENT '´´½¨Ê±¼ä',
-  `audittime` datetime DEFAULT NULL COMMENT 'ÉóºËÊ±¼ä',
-  `auditstate` int(2) DEFAULT NULL COMMENT 'ÉóºË×´Ì¬',
-  `stocknum` int(20) DEFAULT NULL COMMENT '¿â´æ',
-  `sellnum` int(20) DEFAULT NULL COMMENT 'ÏúÊÛÊıÁ¿',
-  `productpicurl` varchar(1000) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·Í¼Æ¬µØÖ·',
-  `productstatus` int(2) DEFAULT NULL COMMENT 'ÉÌÆ·ÉÏÏÂ¼Ü 0 ´ú±íÕı³£ÉÏ¼Ü 1´ú±íÏÂ¼Ü',
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é”®',
+  `producttypeid` int(20) DEFAULT NULL COMMENT 'å•†å“ç±»åˆ«id',
+  `producttitle` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“æ ‡é¢˜',
+  `productprice` int(20) DEFAULT NULL COMMENT 'å•†å“ä»·æ ¼',
+  `mechartid` int(20) DEFAULT NULL COMMENT 'å•†å®¶id',
+  `createtime` datetime DEFAULT NULL COMMENT 'åˆ›å»ºæ—¶é—´',
+  `audittime` datetime DEFAULT NULL COMMENT 'å®¡æ ¸æ—¶é—´',
+  `auditstate` int(2) DEFAULT NULL COMMENT 'å®¡æ ¸çŠ¶æ€',
+  `stocknum` int(20) DEFAULT NULL COMMENT 'åº“å­˜',
+  `sellnum` int(20) DEFAULT NULL COMMENT 'é”€å”®æ•°é‡',
+  `productpicurl` varchar(1000) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“å›¾ç‰‡åœ°å€',
+  `productstatus` int(2) DEFAULT NULL COMMENT 'å•†å“ä¸Šä¸‹æ¶ 0 ä»£è¡¨æ­£å¸¸ä¸Šæ¶ 1ä»£è¡¨ä¸‹æ¶',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
 CREATE TABLE `productdetail` (
-  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'Ö÷¼ü',
-  `proudctid` int(20) DEFAULT NULL COMMENT 'ÉÌÆ·id',
-  `productplace` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·²úµØ',
-  `productitle` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·±êÌâ',
-  `productbrand` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·Æ·ÅÆ',
-  `productweight` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·ÖØÁ¿',
-  `productspecification` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·¹æ¸ñËµÃ÷ºÍ°ü×°',
-  `productdetaipicurl` varchar(1000) COLLATE utf8_bin DEFAULT NULL COMMENT 'ÉÌÆ·ÏêÇéÍ¼Æ¬µØÖ·',
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT 'ä¸»é”®',
+  `proudctid` int(20) DEFAULT NULL COMMENT 'å•†å“id',
+  `productplace` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“äº§åœ°',
+  `productitle` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“æ ‡é¢˜',
+  `productbrand` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“å“ç‰Œ',
+  `productweight` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“é‡é‡',
+  `productspecification` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“è§„æ ¼è¯´æ˜å’ŒåŒ…è£…',
+  `productdetaipicurl` varchar(1000) COLLATE utf8_bin DEFAULT NULL COMMENT 'å•†å“è¯¦æƒ…å›¾ç‰‡åœ°å€',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -92,7 +92,7 @@ CREATE TABLE `producttype` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `producttypename` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `producttypedescription` varchar(1000) COLLATE utf8_bin DEFAULT NULL,
-  `typegrade` int(11) DEFAULT NULL COMMENT 'µÈ¼¶ 1,2,3 1µÈ¼¶×î´ó',
-  `parentid` int(11) DEFAULT NULL COMMENT '¸¸µÈ¼¶id µÚÒ»µÈ¼¶µÄ»° ¸¸µÈ¼¶Îª¿Õ',
+  `typegrade` int(11) DEFAULT NULL COMMENT 'ç­‰çº§ 1,2,3 1ç­‰çº§æœ€å¤§',
+  `parentid` int(11) DEFAULT NULL COMMENT 'çˆ¶ç­‰çº§id ç¬¬ä¸€ç­‰çº§çš„è¯ çˆ¶ç­‰çº§ä¸ºç©º',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
