@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>类别名称</td>
+        <td>类别描述</td>
+        <td>类别等级</td>
+    </tr>
+    <tr th:each="productTypeList: ${productTypeList}">
+        <td th:text="${productTypeList.producttypename}">zhengyifan</td>
+        <td th:text="${productTypeList.producttypedescription}">2.41</td>
+        <td th:text="${productTypeList.typegrade}">2.41</td>
+        <td><a href="#" th:href="@{/findProductTypeById/{id}(id=${productTypeList.id})}">查看</a>|<a href="#" th:href="@{/toUpdateProductTypeById/{id}(id=${productTypeList.id})}">修改</a>|<a href="#" th:href="@{/deleteProductTypeById/{id}(id=${productTypeList.id})}">删除</a></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiyou.mapper.ProductTypeMapper">
+
+    <sql id="consutoql" >
+        <if test="constomProductType != null">
+            <if test="constomProductType.producttypename!=null and constomProductType.producttypename!=''">
+                and producttypename = "${constomProductType.producttypename}"
+            </if>
+            <if test="constomProductType.producttypedescription!=null and constomProductType.producttypedescription!=''">
+                and producttypedescription = "${constomProductType.producttypedescription}"
+            </if>
+            <if test="constomProductType.typegrade!=null and constomProductType.typegrade!=''">
+                and typegrade = "${constomProductType.typegrade}"
+            </if>
+        </if>
+    </sql>
+
+    <insert id="insertProductType" parameterType="com.xiyou.model.ProductType">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into producttype(producttypename,producttypedescription,typegrade,parentid) value(#{producttypename},#{producttypedescription},#{typegrade},#{parentid})
+    </insert>
+
+    <select id="findProductTypeById" parameterType="int" resultType="com.xiyou.model.ProductType">
+        select * from producttype where id = #{value}
+    </select>
+
+    <update id="updateProductTypeById" parameterType="com.xiyou.model.ProductType">
+        update producttype
+        set producttypename=#{producttypename},producttypedescription=#{producttypedescription}
+        where id=#{id}
+    </update>
+
+    <select id="queryListByVo" parameterType="com.xiyou.vo.ProductTypeVo" resultType="com.xiyou.model.ProductType">
+        SELECT * FROM producttype
+        <where>
+            <include refid="consutoql"/>
+        </where>
+    </select>
+
+    <delete id="deleteProductTypeById" parameterType="int">
+        delete from producttype where id=#{id}
+    </delete>
+</mapper>

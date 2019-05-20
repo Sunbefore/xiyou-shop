@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiyou.pindao.mapper.ProductMapper">
+
+    <sql id="consutoql" >
+        <if test="constomProduct != null">
+            <if test="constomProduct.producttypeid!=null and constomProduct.producttypeid!=''">
+                and producttypeid = "${constomProduct.producttypeid}"
+            </if>
+            <if test="constomProduct.producttitle!=null and constomProduct.producttitle!='' ">
+                and producttitle = "${constomProduct.producttitle}"
+            </if>
+            <if test="constomProduct.productprice!=null and constomProduct.productprice!='' ">
+                and productprice = "${constomProduct.productprice}"
+            </if>
+            <if test="constomProduct.mechartid!=null and constomProduct.mechartid!='' ">
+                and mechartid = "${constomProduct.mechartid}"
+            </if>
+        </if>
+    </sql>
+
+
+    <select id="queryProductByVo" parameterType="com.xiyou.pindao.vo.ProductVo" resultType="com.xiyou.pindao.model.Product">
+        select * from product
+        <where>
+            <include refid="consutoql"></include>
+        </where>
+    </select>
+
+
+
+</mapper>

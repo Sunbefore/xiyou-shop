@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiyou.product.mapper.ProductMapper">
+
+    <sql id="consutoql" >
+        <if test="constomProduct != null">
+            <if test="constomProduct.producttypeid!=null and constomProduct.producttypeid!=''">
+                and producttypeid = "${constomProduct.producttypeid}"
+            </if>
+            <if test="constomProduct.producttitle!=null and constomProduct.producttitle!='' ">
+                and producttitle = "${constomProduct.producttitle}"
+            </if>
+            <if test="constomProduct.productprice!=null and constomProduct.productprice!='' ">
+                and productprice = "${constomProduct.productprice}"
+            </if>
+            <if test="constomProduct.mechartid!=null and constomProduct.mechartid!='' ">
+                and mechartid = "${constomProduct.mechartid}"
+            </if>
+        </if>
+    </sql>
+
+
+    <insert id="insertProduct" parameterType="com.xiyou.product.model.Product">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into product(producttypeid,producttitle,productprice,mechartid,createtime,auditstate,stocknum,sellnum,productpicurl) value(#{producttypeid},#{producttitle},#{productprice},#{mechartid},#{createtime},#{auditstate},#{stocknum},#{sellnum},#{productpicurl})
+    </insert>
+
+    <update id="auditProduct" parameterType="com.xiyou.product.model.Product">
+        update product set audittime=#{audittime},auditstate=#{auditstate} where id=#{id}
+    </update>
+
+
+    <select id="findproductById" parameterType="int" resultType="com.xiyou.product.model.Product">
+        select * from product where id = #{value}
+    </select>
+
+
+    <update id="updateProduct" parameterType="com.xiyou.product.model.Product">
+        update product set producttypeid=#{producttypeid},producttitle=#{producttitle},productprice=#{productprice},stocknum=#{stocknum},productpicurl=#{productpicurl} where id=#{id}
+</update>
+
+    <update id="updateProductbyProductStatus" parameterType="com.xiyou.product.model.Product">
+        update product set productstatus=#{productstatus} where id=#{id}
+    </update>
+
+    <delete id="deleteProductById" parameterType="int">
+        delete from product where id = #{id}
+    </delete>
+
+    <select id="queryProductByVo" parameterType="com.xiyou.product.vo.ProductVo" resultType="com.xiyou.product.model.Product">
+        select * from product
+        <where>
+            <include refid="consutoql"></include>
+        </where>
+    </select>
+
+    <select id="queryProductByIds" parameterType="map" resultType="com.xiyou.product.model.Product">
+        select * from product where 1 = 2
+
+        <if test="ids!=null and ids!=''">
+             or id IN
+            <foreach collection="ids" item="iditem" index="index"
+                     open="(" close=")" separator=",">
+                #{iditem}
+            </foreach>
+        </if>
+    </select>
+
+
+</mapper>
