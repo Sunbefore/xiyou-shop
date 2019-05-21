@@ -55,4 +55,12 @@ public class ProductTypeDao {
     public void deleteProductTypeById(int id){
         productTypeMapper.deleteProductTypeById(id);
     }
+
+    /**
+     * 查询所有的产品类型
+     * @return
+     */
+    public List<ProductType> listAllProductType() {
+        return productTypeMapper.listAllProductType();
+    }
 }

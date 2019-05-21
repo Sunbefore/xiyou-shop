@@ -1,6 +1,7 @@
 package com.xiyou.pindao.controller;
 
 import com.xiyou.common.model.Product;
+import com.xiyou.common.model.ProductType;
 import com.xiyou.pindao.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,4 +25,5 @@ public class ProductController {
         List<Product> productList = productService.listProductOut(proudctTypeId);
         return productList;
     }
+
 }

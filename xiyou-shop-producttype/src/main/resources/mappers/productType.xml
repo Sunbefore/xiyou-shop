@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiyou.common.model.ProductType">
+<mapper namespace="com.xiyou.mapper.ProductTypeMapper">
 
     <sql id="consutoql" >
         <if test="constomProductType != null">
@@ -43,4 +43,8 @@
     <delete id="deleteProductTypeById" parameterType="int">
         delete from producttype where id=#{id}
     </delete>
+
+    <select id="listAllProductType"  resultType="com.xiyou.common.model.ProductType">
+        select * from producttype;
+    </select>
 </mapper>

@@ -38,4 +38,10 @@ public interface ProductTypeMapper {
      * @param id
      */
     public void deleteProductTypeById(int id);
+
+    /**
+     * 查询所有的产品类型
+     * @return
+     */
+    public List<ProductType> listAllProductType();
 }

@@ -56,4 +56,12 @@ public class ProductTypeService {
     public void deleteProductTypeById(int id){
         productTypeDao.deleteProductTypeById(id);
     }
+
+    /**
+     * 查询所有的产品类型
+     * @return
+     */
+    public List<ProductType> listAllProductType() {
+        return productTypeDao.listAllProductType();
+    }
 }

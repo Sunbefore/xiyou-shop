@@ -1,18 +1,16 @@
-package com.xiyou.controller;
+package com.xiyou.pindao.controller;
 
 import com.xiyou.common.model.ProductType;
-import com.xiyou.service.ProductTypeService;
+import com.xiyou.pindao.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * 负责支撑feign调用的
- */
-@RestController
-public class ProductTypeOutController {
+@Controller
+public class ProductTypeController {
 
     @Autowired
     private ProductTypeService productTypeService;
@@ -22,8 +20,10 @@ public class ProductTypeOutController {
      * @return
      */
     @GetMapping(value = "/listAllProductType")
-    public List<ProductType> listAllProductType(){
+    public String listAllProductType(Model model){
         List<ProductType> list = productTypeService.listAllProductType();
-        return list;
+        model.addAttribute("productTypeList", list);
+        System.out.println(list);
+        return "list";
     }
 }
