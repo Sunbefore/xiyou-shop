@@ -1,6 +1,6 @@
 package com.xiyou.mapper;
 
-import com.xiyou.model.ProductType;
+import com.xiyou.common.model.ProductType;
 import com.xiyou.vo.ProductTypeVo;
 
 import java.util.List;

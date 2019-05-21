@@ -1,6 +1,8 @@
 package com.xiyou.vo;
 
 
-public class ConstomProductType extends ProductTypeVo {
+import com.xiyou.common.model.ProductType;
+
+public class ConstomProductType extends ProductType {
 
 }

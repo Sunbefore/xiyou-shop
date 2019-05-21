@@ -1,7 +1,7 @@
 package com.xiyou.product.dao;
 
+import com.xiyou.common.model.Product;
 import com.xiyou.product.mapper.ProductMapper;
-import com.xiyou.product.model.Product;
 import com.xiyou.product.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

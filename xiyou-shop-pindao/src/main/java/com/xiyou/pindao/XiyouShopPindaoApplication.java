@@ -8,6 +8,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -16,39 +19,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
-@EnableAutoConfiguration
+@EnableDiscoveryClient
+@EnableFeignClients
 @SpringBootApplication
-@ComponentScan
-@MapperScan("com.xiyou.pindao.mapper")
 public class XiyouShopPindaoApplication {
 	private static Logger logger = Logger.getLogger(XiyouShopPindaoApplication.class);
-
-	@Bean
-	@ConfigurationProperties(prefix="spring.datasource")
-	public DataSource dataSource() {
-
-		return new org.apache.tomcat.jdbc.pool.DataSource();
-	}
-
-	@Bean
-	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-
-		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-		sqlSessionFactoryBean.setDataSource(dataSource());
-
-		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-
-		sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mappers/*.xml"));
-
-		return sqlSessionFactoryBean.getObject();
-	}
-
-	@Bean
-	public PlatformTransactionManager transactionManager() {
-
-		return new DataSourceTransactionManager(dataSource());
-	}
-
 
 	/**
 	 * Start

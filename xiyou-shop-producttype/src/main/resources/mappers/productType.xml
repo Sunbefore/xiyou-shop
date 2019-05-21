@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiyou.mapper.ProductTypeMapper">
+<mapper namespace="com.xiyou.common.model.ProductType">
 
     <sql id="consutoql" >
         <if test="constomProductType != null">
@@ -16,24 +16,24 @@
         </if>
     </sql>
 
-    <insert id="insertProductType" parameterType="com.xiyou.model.ProductType">
+    <insert id="insertProductType" parameterType="com.xiyou.common.model.ProductType">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into producttype(producttypename,producttypedescription,typegrade,parentid) value(#{producttypename},#{producttypedescription},#{typegrade},#{parentid})
     </insert>
 
-    <select id="findProductTypeById" parameterType="int" resultType="com.xiyou.model.ProductType">
+    <select id="findProductTypeById" parameterType="int" resultType="com.xiyou.common.model.ProductType">
         select * from producttype where id = #{value}
     </select>
 
-    <update id="updateProductTypeById" parameterType="com.xiyou.model.ProductType">
+    <update id="updateProductTypeById" parameterType="com.xiyou.common.model.ProductType">
         update producttype
         set producttypename=#{producttypename},producttypedescription=#{producttypedescription}
         where id=#{id}
     </update>
 
-    <select id="queryListByVo" parameterType="com.xiyou.vo.ProductTypeVo" resultType="com.xiyou.model.ProductType">
+    <select id="queryListByVo" parameterType="com.xiyou.vo.ProductTypeVo" resultType="com.xiyou.common.model.ProductType">
         SELECT * FROM producttype
         <where>
             <include refid="consutoql"/>

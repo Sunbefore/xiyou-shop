@@ -1,6 +1,6 @@
 package com.xiyou.controller;
 
-import com.xiyou.model.ProductType;
+import com.xiyou.common.model.ProductType;
 import com.xiyou.service.ProductTypeService;
 import com.xiyou.vo.ProductTypeVo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.xiyou.service;
 
+import com.xiyou.common.model.ProductType;
 import com.xiyou.dao.ProductTypeDao;
-import com.xiyou.model.ProductType;
 import com.xiyou.vo.ProductTypeVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

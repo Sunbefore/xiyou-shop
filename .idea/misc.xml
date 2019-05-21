@@ -12,6 +12,8 @@
         <option value="$PROJECT_DIR$/xiyou-shop-order/pom.xml" />
         <option value="$PROJECT_DIR$/xiyou-shop-payservice/pom.xml" />
         <option value="$PROJECT_DIR$/xiyou-shop-pindao/pom.xml" />
+        <option value="$PROJECT_DIR$/xiyou-shop-cloudserver/pom.xml" />
+        <option value="$PROJECT_DIR$/xiyou-shop-common/pom.xml" />
       </list>
     </option>
   </component>

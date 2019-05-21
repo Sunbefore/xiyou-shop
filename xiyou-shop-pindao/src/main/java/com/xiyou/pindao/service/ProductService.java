@@ -1,26 +1,24 @@
 package com.xiyou.pindao.service;
 
-
-import com.xiyou.pindao.dao.ProductDao;
-import com.xiyou.pindao.model.Product;
-import com.xiyou.pindao.vo.ProductVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.xiyou.common.model.Product;
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@Service
-public class ProductService {
-    @Autowired
-    private ProductDao productDao;
+/**
+ * 远程调用product模块
+ */
+@FeignClient("xiyou-shop-product")
+public interface ProductService {
 
     /**
-     * 根据相关属性查询产品
-     * @param productVo
+     * 通过productTypeId查询Product
+     * @param proudctTypeId
      * @return
      */
-    public List<Product> queryProductByVo(ProductVo productVo){
-        return productDao.queryProductByVo(productVo);
-    }
+    @RequestMapping(value = "/listProductOut/{proudctTypeId}", method = RequestMethod.GET)
+    public List<Product> listProductOut(@PathVariable("proudctTypeId") Integer proudctTypeId);
 }

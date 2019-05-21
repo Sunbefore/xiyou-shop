@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/merchat/merchat.iml" filepath="$PROJECT_DIR$/merchat/merchat.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyou-shop.iml" filepath="$PROJECT_DIR$/xiyou-shop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiyou-shop-cloudserver/xiyou-shop-cloudserver.iml" filepath="$PROJECT_DIR$/xiyou-shop-cloudserver/xiyou-shop-cloudserver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiyou-shop-common/xiyou-shop-common.iml" filepath="$PROJECT_DIR$/xiyou-shop-common/xiyou-shop-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xiyou-shop-merchat/xiyou-shop-merchat.iml" filepath="$PROJECT_DIR$/xiyou-shop-merchat/xiyou-shop-merchat.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyou-shop-merchat/xiyou-shop-merchat.iml" filepath="$PROJECT_DIR$/xiyou-shop-merchat/xiyou-shop-merchat.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyou-shop-order/xiyou-shop-order.iml" filepath="$PROJECT_DIR$/xiyou-shop-order/xiyou-shop-order.iml" />
       <module fileurl="file://$PROJECT_DIR$/xiyou-shop-payservice/xiyou-shop-payservice.iml" filepath="$PROJECT_DIR$/xiyou-shop-payservice/xiyou-shop-payservice.iml" />

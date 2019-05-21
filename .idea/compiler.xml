@@ -6,8 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="merchat" />
         <module name="xiyou-shop" />
+        <module name="xiyou-shop-cloudserver" />
+        <module name="xiyou-shop-common" />
         <module name="xiyou-shop-merchat" />
         <module name="xiyou-shop-order" />
         <module name="xiyou-shop-payservice" />
@@ -18,8 +19,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="merchat" target="1.8" />
-      <module name="xiyou-shop" target="1.8" />
+      <module name="xiyou-shop" target="1.5" />
+      <module name="xiyou-shop-cloudserver" target="1.8" />
+      <module name="xiyou-shop-common" target="1.8" />
       <module name="xiyou-shop-merchat" target="1.8" />
       <module name="xiyou-shop-order" target="1.8" />
       <module name="xiyou-shop-payservice" target="1.8" />
@@ -28,5 +30,10 @@
       <module name="xiyou-shop-producttype" target="1.8" />
       <module name="xiyou-shop-user" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="xiyou-shop-common" options="" />
+    </option>
   </component>
 </project>
