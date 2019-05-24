@@ -5,7 +5,7 @@
 <body>
 
 <div th:fragment="producttype" >
-    <a href="touserregister">注册</a>||<a href="tologin">登录</a>欢迎<span th:if="${session.user != null}" th:text="${session.user.name}"></span><br/>
+    <a href="/toUserRegister">注册</a>||<a href="/toLogin">登录</a>欢迎<span th:if="${session.user != null}" th:text="${session.user.name}"></span><br/>
     <form action="searchproductout" method="post">
         <input type="text" name="keyword"/>
         <input type="submit" th:value="搜索"/>

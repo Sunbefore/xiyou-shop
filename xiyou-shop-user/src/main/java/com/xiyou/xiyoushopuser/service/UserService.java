@@ -1,7 +1,7 @@
 package com.xiyou.xiyoushopuser.service;
 
+import com.xiyou.common.model.User;
 import com.xiyou.xiyoushopuser.dao.UserDao;
-import com.xiyou.xiyoushopuser.model.User;
 import com.xiyou.xiyoushopuser.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +54,14 @@ public class UserService {
      */
     public void deleteUserById(int id){
         userDao.deleteUserById(id);
+    }
+
+    /**
+     * 根据用户名查询用户的相关信息
+     * @param name
+     * @return
+     */
+    public User findByUserName(String name){
+        return userDao.findByUserName(name);
     }
 }

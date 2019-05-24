@@ -13,8 +13,8 @@ public class ProductDetail {
     private int proudctid;
     // 商品产地
     private String productplace;
-    // 商品标题
-    private String productitle;
+    // 商品描述
+    private String productdescription;
     // 商品品牌
     private String productbrand;
     // 商品重量

@@ -1,6 +1,6 @@
 package com.xiyou.xiyoushopuser.mapper;
 
-import com.xiyou.xiyoushopuser.model.User;
+import com.xiyou.common.model.User;
 import com.xiyou.xiyoushopuser.vo.UserVo;
 
 import java.util.List;
@@ -47,4 +47,11 @@ public interface UserMapper {
      * @param id
      */
     public void deleteUserById(int id);
+
+    /**
+     * 根据用户名查询用户的相关信息
+     * @param name
+     * @return
+     */
+    public User findByUserName(String name);
 }

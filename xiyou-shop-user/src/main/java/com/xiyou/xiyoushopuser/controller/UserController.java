@@ -1,6 +1,7 @@
 package com.xiyou.xiyoushopuser.controller;
 
-import com.xiyou.xiyoushopuser.model.User;
+
+import com.xiyou.common.model.User;
 import com.xiyou.xiyoushopuser.service.UserService;
 import com.xiyou.xiyoushopuser.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;

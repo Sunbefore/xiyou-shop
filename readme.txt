@@ -80,7 +80,7 @@ CREATE TABLE `productdetail` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
   `proudctid` int(20) DEFAULT NULL COMMENT '商品id',
   `productplace` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '商品产地',
-  `productitle` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商品标题',
+  `productdescription` varchar(200) COLLATE utf8_bin DEFAULT NULL COMMENT '商品详情描述',
   `productbrand` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '商品品牌',
   `productweight` varchar(50) COLLATE utf8_bin DEFAULT NULL COMMENT '商品重量',
   `productspecification` varchar(500) COLLATE utf8_bin DEFAULT NULL COMMENT '商品规格说明和包装',
