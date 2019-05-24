@@ -81,4 +81,14 @@ public class ProductOutController {
         productService.updateProduct(product);
     }
 
+    /**
+     * 根据关键词 查询product
+     * @param keyWord
+     * @return
+     */
+    @GetMapping("/searchProductOut/{keyWord}")
+    public List<Product> searchProductOut(@PathVariable String keyWord){
+        List<Product> list = productService.queryProductByIds(keyWord);
+        return list;
+    }
 }

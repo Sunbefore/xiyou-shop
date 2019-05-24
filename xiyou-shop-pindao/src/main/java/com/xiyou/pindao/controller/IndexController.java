@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -43,4 +44,19 @@ public class IndexController {
         model.addAttribute("productList", productList);
         return "list";
     }
+
+
+    /**
+     * 根据关键词 查询product
+     * @param keyWord
+     * @return
+     */
+    @PostMapping("/searchProductOut")
+    public String searchProductOut(String keyWord, Model model){
+        List<Product> productList = productService.searchProductOut(keyWord);
+        System.out.println("solr搜索结果：" + productList);
+        model.addAttribute("productList", productList);
+        return "list";
+    }
+
 }

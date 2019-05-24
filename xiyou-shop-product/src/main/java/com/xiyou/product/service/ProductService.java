@@ -2,17 +2,25 @@ package com.xiyou.product.service;
 
 import com.xiyou.common.model.Product;
 import com.xiyou.product.dao.ProductDao;
+import com.xiyou.product.utils.SolrUtil;
+import com.xiyou.product.vo.ProductSolr;
 import com.xiyou.product.vo.ProductVo;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 @Service
 public class ProductService {
     @Autowired
     private ProductDao productDao;
+
+    // Solr的客户端对象 springboot自动生成了
+    @Autowired
+    private SolrClient solrClient;
 
     /**
      * 添加商品
@@ -20,7 +28,19 @@ public class ProductService {
      * @return
      */
     public int insertProduct(Product product){
-        return productDao.insertProduct(product);
+        int num = productDao.insertProduct(product);
+        // 构建对象 给solr建立索引
+        Map<String, Object> mapValue = new HashMap<>();
+        // id建立索引
+        mapValue.put("id", product.getId());
+        // producttitle建立索引
+        mapValue.put("producttitle", product.getProducttitle());
+        try {
+            SolrUtil.addIndex2(solrClient, mapValue);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return num;
     }
 
     /**
@@ -79,5 +99,29 @@ public class ProductService {
         product.setId(id);
         product.setProductstatus(productstataus);
         productDao.updateProductbyProductStatus(product);
+    }
+
+    /**
+     * 根据关键词查询product
+     * @param keyWord
+     * @return
+     */
+    public List<Product> queryProductByIds(String keyWord){
+        List<String> ids = null;
+        try {
+            // 通过solr查询，利用关键字查询出product的id
+            ids = SolrUtil.searchqyinfofromsolr(solrClient, keyWord);
+        } catch (SolrServerException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(ids == null || ids.size() == 0){
+            // 表示solr没有查找到
+            ids = null;
+        }
+        Map<String, List<String>> map = new HashMap<>();
+        map.put("ids", ids);
+        return productDao.queryProductByIds(map);
     }
 }

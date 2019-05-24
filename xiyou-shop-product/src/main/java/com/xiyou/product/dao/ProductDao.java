@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 public class ProductDao {
@@ -72,5 +73,15 @@ public class ProductDao {
      */
     public void updateProductbyProductStatus(Product product){
         productMapper.updateProductbyProductStatus(product);
+    }
+
+
+    /**
+     * 根据ids查询product
+     * @param map
+     * @return
+     */
+    public List<Product> queryProductByIds(Map<String, List<String>> map){
+        return productMapper.queryProductByIds(map);
     }
 }

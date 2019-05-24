@@ -57,11 +57,11 @@ public interface ProductMapper {
      */
     public void updateProductbyProductStatus(Product product);
 
-/*    public void auditProduct(Product product);
-    public Product findproductById(int id);
-    public void updateProduct(Product product);
-    public void deleteProductById(int id);
-    //public List<Product> queryProductByVo(ProductVo productVo);
-    public void updateProductbyProductStatus(Product product);
-    public List<Product> queryProductByIds(Map<String, List<String>> map);*/
+    /**
+     * 根据ids查询product
+     * @param map
+     * @return
+     */
+    public List<Product> queryProductByIds(Map<String, List<String>> map);
+
 }
