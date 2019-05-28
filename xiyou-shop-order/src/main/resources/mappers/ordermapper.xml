@@ -26,7 +26,7 @@
         </if>
     </sql>
 
-    <insert id="insertOrder" parameterType="com.xiyou.order.model.Order">
+    <insert id="insertOrder" parameterType="com.xiyou.common.model.Order">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
@@ -34,22 +34,22 @@
         value(#{payamount},#{userid},#{createtime},#{consigneeadress},#{consigneephone},#{consigneename},#{tradenumber},#{orderstatus},#{paystatus})
     </insert>
 
-    <select id="listOrder" parameterType="com.xiyou.order.vo.OrderVo" resultType="com.xiyou.order.model.Order">
+    <select id="listOrder" parameterType="com.xiyou.order.vo.OrderVo" resultType="com.xiyou.common.model.Order">
         select * from ordermain
         <where>
             <include refid="consutoql"></include>
         </where>
     </select>
 
-    <update id="updateOrderWithUser" parameterType="com.xiyou.order.model.Order">
+    <update id="updateOrderWithUser" parameterType="com.xiyou.common.model.Order">
         update ordermain set consigneeadress=#{consigneeadress},consigneephone=#{consigneephone},consigneename=#{consigneename} where id=#{id}
     </update>
 
-    <update id="updateOrderById" parameterType="com.xiyou.order.model.Order">
+    <update id="updateOrderById" parameterType="com.xiyou.common.model.Order">
         update ordermain set paystatus=#{paystatus},paytype=#{paytype},paytime=#{paytime} where id=#{id}
     </update>
 
-    <select id="findOrderById" parameterType="int" resultType="com.xiyou.order.model.Order">
+    <select id="findOrderById" parameterType="int" resultType="com.xiyou.common.model.Order">
         select * from ordermain where id = #{value}
     </select>
 

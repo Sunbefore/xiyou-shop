@@ -1,6 +1,6 @@
 package com.xiyou.order.mapper;
 
-import com.xiyou.order.model.Order;
+import com.xiyou.common.model.Order;
 import com.xiyou.order.vo.OrderVo;
 
 import java.util.List;

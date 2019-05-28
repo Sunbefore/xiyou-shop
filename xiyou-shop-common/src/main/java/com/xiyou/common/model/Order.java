@@ -1,4 +1,4 @@
-package com.xiyou.order.model;
+package com.xiyou.common.model;
 
 import lombok.Data;
 
@@ -11,7 +11,7 @@ import java.util.Date;
 @Data
 public class Order {
    private int id;//主键
-    private int payamount;//支付金额
+    private double payamount;//支付金额
     private int userid;//用户id
     private Date createtime;//创建时间
     private Date paytime;//支付时间

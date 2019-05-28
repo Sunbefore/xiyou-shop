@@ -15,7 +15,7 @@
     </tr>
     <tr th:each="product: ${productList}">
         <td th:text="${product.producttypeid}"></td>
-        <td > <a href="#" th:href="@{/toproductdetail(productytpeid=-1,producid=${product.id})}"><span th:text="${product.producttitle}"></span></a></td>
+        <td > <a href="#" th:href="@{/toProductDetail(productTypeId=-1,productId=${product.id})}"><span th:text="${product.producttitle}"></span></a></td>
         <td th:text="${product.productprice}"></td>
         <td th:text="${product.mechartid}"></td>
         <td th:text="${product.stocknum}"></td>

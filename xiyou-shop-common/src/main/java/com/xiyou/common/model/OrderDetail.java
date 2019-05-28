@@ -1,4 +1,4 @@
-package com.xiyou.order.model;
+package com.xiyou.common.model;
 
 import lombok.Data;
 

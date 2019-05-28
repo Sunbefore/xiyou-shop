@@ -1,7 +1,7 @@
 package com.xiyou.order.dao;
 
 import com.xiyou.order.mapper.OrderMapper;
-import com.xiyou.order.model.Order;
+import com.xiyou.common.model.Order;
 import com.xiyou.order.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

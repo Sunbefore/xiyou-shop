@@ -1,6 +1,6 @@
 package com.xiyou.order.controller;
 
-import com.xiyou.order.model.Order;
+import com.xiyou.common.model.Order;
 import com.xiyou.order.service.OrderService;
 import com.xiyou.order.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,9 @@
 package com.xiyou.pindao.service;
 
 import com.xiyou.common.model.Product;
+import com.xiyou.common.model.ProductDetail;
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +28,21 @@ public interface ProductService {
      */
     @RequestMapping(value = "/searchProductOut/{keyWord}", method = RequestMethod.GET)
     public List<Product> searchProductOut(@PathVariable("keyWord") String keyWord);
+
+    /**
+     * 根據id查看其产品信息
+     * @param id
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/viewOutProduct/{id}", method = RequestMethod.GET)
+    public Product viewOutProduct(@PathVariable("id") Integer id);
+
+    /**
+     * 根据产品id 查询产品详情
+     * @param productId
+     * @return
+     */
+    @RequestMapping(value = "/findProductDetailByProductId",method = RequestMethod.POST)
+    public ProductDetail findProductDetailByProductId(@RequestParam(value = "productId") Integer productId);
 }

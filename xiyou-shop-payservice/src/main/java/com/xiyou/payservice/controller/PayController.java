@@ -3,11 +3,15 @@ package com.xiyou.payservice.controller;
 import com.xiyou.payservice.service.impl.WeiXinPayService;
 import com.xiyou.payservice.service.impl.YinLianPayService;
 import com.xiyou.payservice.service.impl.ZhiFuBaoPayService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+// 日志注解
+@Slf4j
 @Controller
 public class PayController {
 
@@ -43,5 +47,10 @@ public class PayController {
                 break;
         }
         return payResult;
+    }
+
+    @RequestMapping("/auth")
+    public void auth(@RequestParam("code") String code,@RequestParam("orderid") int orderid){
+        System.out.println(code);
     }
 }

@@ -4,9 +4,9 @@
 </head>
 <body>
 <div th:include="producttype :: producttype" ></div>
-<form action="insertOrder" method="post">
+<form action="/insertOrder" method="post">
      <input type="hidden" name="productid" th:value="${product.id}"/>
-    <input type="hidden" name="mechartid" th:value="${product.mechartid}"/>
+     <input type="hidden" name="mechartid" th:value="${product.mechartid}"/>
      <input type="hidden" name="num" th:value="${num}"/>
     <input type="hidden" name="payamount" th:value="${totalamount}"/>
     商品名称：<span th:text="${product.producttitle}"></span><br/>

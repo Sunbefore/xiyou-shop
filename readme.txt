@@ -35,7 +35,7 @@ CREATE TABLE `mechant` (
 
 CREATE TABLE `ordermain` (
   `id` int(20) NOT NULL AUTO_INCREMENT,
-  `payamount` int(20) DEFAULT NULL COMMENT '支付金融',
+  `payamount` double(20,0) DEFAULT NULL COMMENT '支付金融',
   `userid` int(20) DEFAULT NULL COMMENT '用户id',
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
   `paytime` datetime DEFAULT NULL COMMENT '支付时间',
@@ -47,7 +47,7 @@ CREATE TABLE `ordermain` (
   `paytype` int(2) DEFAULT NULL COMMENT '支付类型',
   `orderstatus` int(2) DEFAULT NULL COMMENT '订单状态 0 正常 1 是取消',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 CREATE TABLE `orderdetail` (
   `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '订单id',
