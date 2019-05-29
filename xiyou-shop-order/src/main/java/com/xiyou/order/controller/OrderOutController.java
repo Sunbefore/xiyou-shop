@@ -8,6 +8,7 @@ import com.xiyou.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -33,6 +34,33 @@ public class OrderOutController {
         orderDetail.setOrderid(order.getId());
         orderDetailService.insertOrderDetail(orderDetail);
         return order.getId();
+    }
+
+    /**
+     * 根据order的id查询order
+     * @param id
+     * @return
+     */
+    @PostMapping(value = "/findOrderById")
+    // @RequestParam可要可不要，但是@RequestBody必须要，并且只能有一个
+    public Order findOrderById(@RequestParam Integer id){
+        Order order = orderService.findOrderById(id);
+        return order;
+    }
+
+    /**
+     * 根据order的id，支付状态，支付类型更新order
+     * @param id
+     * @param payType
+     * @param payStatus
+     */
+    @PostMapping(value = "/updateOrderById")
+    public void updateOrderById(@RequestParam int id,@RequestParam int payType,@RequestParam int payStatus){
+        Order order = new Order();
+        order.setId(id);
+        order.setPaytype(payType);
+        order.setPaystatus(payStatus);
+        orderService.updateOrderById(order);
     }
 
 }

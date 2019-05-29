@@ -84,6 +84,7 @@ public class OrderService {
      * @param order
      */
     public void updateOrderById(Order order){
+        order.setPaytime(new Date());
         orderDao.updateOrderById(order);
     }
 
