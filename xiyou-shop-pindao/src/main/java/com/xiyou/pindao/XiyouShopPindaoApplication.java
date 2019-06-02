@@ -1,5 +1,6 @@
 package com.xiyou.pindao;
 
+import net.unicon.cas.client.configuration.EnableCasClient;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -22,6 +23,8 @@ import javax.sql.DataSource;
 @EnableDiscoveryClient
 @EnableFeignClients
 @SpringBootApplication
+// 开启cas的注解
+@EnableCasClient
 public class XiyouShopPindaoApplication {
 	private static Logger logger = Logger.getLogger(XiyouShopPindaoApplication.class);
 

@@ -6,12 +6,14 @@ import com.xiyou.pindao.service.OrderService;
 import com.xiyou.pindao.service.ProductService;
 import com.xiyou.pindao.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,6 +32,9 @@ public class IndexController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * 根据productTypeId查询ProductType
@@ -150,12 +155,51 @@ public class IndexController {
             OrderAll orderAll = new OrderAll();
             orderAll.setOrder(order);
             orderAll.setOrderDetail(orderDetail);
-            int orderid = orderService.insertOutOrder(orderAll);
-            model.addAttribute("orderid",orderid);
+            int orderId = orderService.insertOutOrder(orderAll);
+            model.addAttribute("orderId",orderId);
             return "payorder";
         }
 
 
+    }
+
+
+    /**
+     * 支付服务，新增订单后，跳转到支付平台
+     * @param model
+     * @param req
+     * @param orderId 订单id
+     * @param payType 支付平台种类 1 微信 2 支付宝 3 银联
+     * @return
+     */
+    @PostMapping("/payOrder")
+    public String payOrder(Model model,
+                           HttpServletRequest req,
+                           int orderId,
+                           int payType){
+        HttpSession session = req.getSession();
+        Object user = session.getAttribute("user");
+        // 如果用户没有登录让其进行登录操作
+        if (user == null){
+            return "login";
+        }
+        // 根据支付类别判断登录方式
+        // 微信支付 payType是1
+        if (1 == payType){
+            String url =
+                    "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4c3f858dd56910ae&redirect_uri=http://xiyoushop.natapp1.cc/auth?orderId="+ orderId +"&response_type=code&scope=snsapi_base#wechat_redirect";
+            // 利用restTemplate进行远程的url访问，得到String类型
+            String response = restTemplate.getForObject(url, String.class);
+            System.out.println("==================");
+            System.out.println("response: " + response);
+            System.out.println("==================");
+            return "list";
+        }
+        System.out.println("==================");
+        System.out.println("这里暂时不支持其他方式支付");
+        System.out.println("==================");
+        // 目前不太可能是null，null这里表示的是已经登录，用的别的方式进行支付
+        return null;
     }
 
 }
