@@ -4,12 +4,18 @@ import com.xiyou.common.model.Product;
 import com.xiyou.product.mapper.ProductMapper;
 import com.xiyou.product.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 
 @Component
+// cacheNames对应的是xml中配置的name属性
+@CacheConfig(cacheNames = "productCache")
 public class ProductDao {
 
     @Autowired
@@ -20,6 +26,7 @@ public class ProductDao {
      * @param product
      * @return
      */
+    @Cacheable
     public int insertProduct(Product product){
         return productMapper.insertProduct(product);
     }
@@ -38,7 +45,10 @@ public class ProductDao {
      * @param id
      * @return
      */
+    // 没写key 默认是所有参数作为key
+    @Cacheable
     public Product findproductById(int id){
+        System.out.println("进入product的查询。。。");
         return productMapper.findproductById(id);
     }
 
@@ -46,6 +56,7 @@ public class ProductDao {
      * 更改产品
      * @param product
      */
+    @CachePut(key = "#id")
     public void updateProduct(Product product){
         productMapper.updateProduct(product);
     }
@@ -54,6 +65,7 @@ public class ProductDao {
      * 根据id删除产品
      * @param id
      */
+    // @CacheEvict()
     public void deleteProductById(int id){
         productMapper.deleteProductById(id);
     }

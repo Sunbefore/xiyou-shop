@@ -2,6 +2,7 @@ package com.xiyou.common.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  */
 
 @Data
-public class Product {
+public class Product implements Serializable{
     // 主键
     private int id;
     // 商品类别id

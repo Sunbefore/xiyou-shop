@@ -1,5 +1,7 @@
 package com.xiyou.product.service;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.xiyou.common.model.Product;
 import com.xiyou.product.dao.ProductDao;
 import com.xiyou.product.utils.SolrUtil;
@@ -22,6 +24,9 @@ public class ProductService {
     @Autowired
     private SolrClient solrClient;
 
+    @Autowired
+    private RedisService redisService;
+
     /**
      * 添加商品
      * @param product
@@ -29,6 +34,9 @@ public class ProductService {
      */
     public int insertProduct(Product product){
         int num = productDao.insertProduct(product);
+        // 将对象转为json
+        String jsonString = JSONObject.toJSONString(product);
+        redisService.setKey(String.valueOf(product.getId()), jsonString);
         // 构建对象 给solr建立索引
         Map<String, Object> mapValue = new HashMap<>();
         // id建立索引
@@ -62,7 +70,15 @@ public class ProductService {
      * @return
      */
     public Product findproductById(int id){
-        return productDao.findproductById(id);
+        // 从redis中寻找id对应的value
+        String value = redisService.getKey(String.valueOf(id));
+        // 将json对象转换为对象
+        Product product = JSONObject.parseObject(value, Product.class);
+        System.out.println(product);
+        if(product == null){
+            product = productDao.findproductById(id);
+        }
+        return product;
     }
 
     /**
