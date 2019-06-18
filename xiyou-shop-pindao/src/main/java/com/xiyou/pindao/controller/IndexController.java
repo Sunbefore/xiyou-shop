@@ -2,6 +2,7 @@ package com.xiyou.pindao.controller;
 
 import com.xiyou.common.model.*;
 import com.xiyou.common.vo.OrderAll;
+import com.xiyou.pindao.service.OrderMsgOutService;
 import com.xiyou.pindao.service.OrderService;
 import com.xiyou.pindao.service.ProductService;
 import com.xiyou.pindao.service.ProductTypeService;
@@ -35,6 +36,9 @@ public class IndexController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private OrderMsgOutService orderMsgOutService;
 
     /**
      * 根据productTypeId查询ProductType
@@ -155,14 +159,32 @@ public class IndexController {
             OrderAll orderAll = new OrderAll();
             orderAll.setOrder(order);
             orderAll.setOrderDetail(orderDetail);
-            int orderId = orderService.insertOutOrder(orderAll);
-            model.addAttribute("orderId",orderId);
-            return "payorder";
+            // int orderId = orderService.insertOutOrder(orderAll);
+            // model.addAttribute("orderId",orderId);
+            // orderMsgOutService.sendOrderMsg("远程调用");
+            orderMsgOutService.sendOrderObj(orderAll);
+            List<Order> listOrder = orderService.listOrderByUserId(userid);
+            model.addAttribute("listOrder", listOrder);
+            return "listorder";
         }
-
-
     }
 
+
+    @GetMapping("/listOrderByUserId")
+    public String listOrderByUserId(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("user");
+        // 若未登录，则跳转到登录页面
+        if(user == null){
+            return "login";
+        }else {
+            User userreal = (User)user;
+            int userId = userreal.getId();
+            List<Order> listOrder = orderService.listOrderByUserId(userId);
+            model.addAttribute("listOrder", listOrder);
+            return "listorder";
+        }
+    }
 
     /**
      * 支付服务，新增订单后，跳转到支付平台

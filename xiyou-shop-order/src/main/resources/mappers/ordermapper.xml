@@ -58,4 +58,11 @@
         delete from ordermain where id = #{id}
     </delete>
 
+    <select id="listOrderByUserId" parameterType="int" resultType="com.xiyou.common.model.Order">
+        select * from ordermain where userid = #{userid}
+    </select>
+
+    <select id="findOrderByTradeNumber" parameterType="string" resultType="com.xiyou.common.model.Order">
+        select * from ordermain where tradenumber = #{tradenumber}
+    </select>
 </mapper>

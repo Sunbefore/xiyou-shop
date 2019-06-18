@@ -91,11 +91,4 @@ public class OrderController {
         orderService.deleteOrderById(id);
     }
 
-    /**
-     * 根据id更新订单信息
-     * @param order
-     */
-    public void updateOrderById(Order order){
-        orderService.updateOrderById(order);
-    }
 }

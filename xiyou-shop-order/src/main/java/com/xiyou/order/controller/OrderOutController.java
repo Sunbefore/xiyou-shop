@@ -6,10 +6,9 @@ import com.xiyou.common.vo.OrderAll;
 import com.xiyou.order.service.OrderDetailService;
 import com.xiyou.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class OrderOutController {
@@ -61,6 +60,26 @@ public class OrderOutController {
         order.setPaytype(payType);
         order.setPaystatus(payStatus);
         orderService.updateOrderById(order);
+    }
+
+    /**
+     * 根据userId查询订单信息
+     * @param userId
+     * @return
+     */
+    @GetMapping("/listOrderByUserId/{userId}")
+    public List<Order> listOrderByUserId(@PathVariable Integer userId){
+        return orderService.listOrderByUserId(userId);
+    }
+
+    /**
+     * 根据交易流水号查询订单
+     * @param tradeNumber
+     * @return
+     */
+    @GetMapping("/findOrderByTradeNumber/{tradeNumber}")
+    public Order findOrderByTradeNumber(@PathVariable String tradeNumber){
+        return orderService.findOrderByTradeNumber(tradeNumber);
     }
 
 }

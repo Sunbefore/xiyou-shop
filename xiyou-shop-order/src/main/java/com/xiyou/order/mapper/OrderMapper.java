@@ -48,4 +48,18 @@ public interface OrderMapper {
      */
     public void updateOrderById(Order order);
 
+    /**
+     * 根据userId查询订单信息
+     * @param userid
+     * @return
+     */
+    public List<Order> listOrderByUserId(int userid);
+
+    /**
+     * 根据交易流水号查询订单
+     * @param tradenumber
+     * @return
+     */
+    public Order findOrderByTradeNumber(String tradenumber);
+
 }

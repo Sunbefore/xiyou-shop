@@ -2,6 +2,7 @@ package com.xiyou.common.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  */
 
 @Data
-public class Order {
+public class Order implements Serializable{
    private int id;//主键
     private double payamount;//支付金额
     private int userid;//用户id
