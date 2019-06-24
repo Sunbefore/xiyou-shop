@@ -2,6 +2,7 @@ package com.xiyou.pindao.controller;
 
 import com.xiyou.common.model.*;
 import com.xiyou.common.vo.OrderAll;
+import com.xiyou.pindao.hystrix.ProductTypeServiceHystrix;
 import com.xiyou.pindao.service.OrderMsgOutService;
 import com.xiyou.pindao.service.OrderService;
 import com.xiyou.pindao.service.ProductService;
@@ -25,8 +26,8 @@ import java.util.List;
  */
 @Controller
 public class IndexController {
-    @Autowired
-    private ProductTypeService productTypeService;
+    // @Autowired
+    // private ProductTypeService productTypeService;
 
     @Autowired
     private ProductService productService;
@@ -40,6 +41,8 @@ public class IndexController {
     @Autowired
     private OrderMsgOutService orderMsgOutService;
 
+    @Autowired
+    private ProductTypeServiceHystrix productTypeServiceHystrix;
     /**
      * 根据productTypeId查询ProductType
      * @param model
@@ -49,7 +52,7 @@ public class IndexController {
     @GetMapping("/indexProduct/{productTypeId}")
     public String indexProduct(Model model, @PathVariable Integer productTypeId){
         // 查询出所有的产品类型
-        List<ProductType> productTypeList = productTypeService.listAllProductType();
+        List<ProductType> productTypeList = productTypeServiceHystrix.listAllProductType();
         model.addAttribute("productTypeList", productTypeList);
         if(productTypeId == -1){
             // 如果不存在默认将第一个传递进来
@@ -80,7 +83,7 @@ public class IndexController {
      */
     @GetMapping("/toProductDetail")
     public String toProductDetail(Model model, Integer productId, Integer productTypeId){
-        List<ProductType> productTypeList = productTypeService.listAllProductType();
+        List<ProductType> productTypeList = productTypeServiceHystrix.listAllProductType();
         model.addAttribute("productTypeList", productTypeList);
         System.out.println(productTypeList);
         if(productTypeId == -1){
@@ -102,7 +105,7 @@ public class IndexController {
      */
     @GetMapping(value = "/toBuy")
     public String toBuy(Model model, @RequestParam int productId, @RequestParam int num){
-        List<ProductType> list = productTypeService.listAllProductType();
+        List<ProductType> list = productTypeServiceHystrix.listAllProductType();
         model.addAttribute("producTypeList",list);
         Product product = productService.viewOutProduct(productId);
         model.addAttribute("product",product);

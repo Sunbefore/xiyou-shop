@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
@@ -25,6 +26,8 @@ import javax.sql.DataSource;
 @SpringBootApplication
 // 开启cas的注解
 @EnableCasClient
+// 开启服务降级
+@EnableCircuitBreaker
 public class XiyouShopPindaoApplication {
 	private static Logger logger = Logger.getLogger(XiyouShopPindaoApplication.class);
 

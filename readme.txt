@@ -97,6 +97,17 @@ CREATE TABLE `producttype` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 ----
+CREATE TABLE `messagestatuslog` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `ywtype` varchar(20) COLLATE utf8_bin DEFAULT NULL COMMENT '业务类型（订单服务就是order）',
+  `ywid` int(20) DEFAULT NULL COMMENT '业务的id',
+  `ywmessage` varchar(1000) COLLATE utf8_bin DEFAULT NULL COMMENT '业务消息',
+  `ywmessagestatus` int(2) DEFAULT NULL COMMENT '业务消息的状态(1 未发送 2 已发送 3 发送失败 4 消费者未接受 5 消费成功 6 消费失败)',
+  `msgcreatedate` datetime DEFAULT NULL COMMENT '第一次消息发送的时间',
+  `msgupdatedate` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+----
 测试git是否成功
 https://baijiahao.baidu.com/s?id=1619544681032320225&wfr=spider&for=pc
 git push -u origin master
